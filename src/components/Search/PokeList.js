@@ -7,7 +7,7 @@ export default class PokeList extends Component {
         pokeData: pokeData,
         pokemonName: '',
         sortOrder: '',
-        sortBy: 'pokemon',
+        sortBy: 'pokemonName',
         searchQuery: '',
     }
 

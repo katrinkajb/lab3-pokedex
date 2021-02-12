@@ -52,3 +52,20 @@ Header {
 .capitalize {
   text-transform: capitalize;
 }
+
+.search-page {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+
+}
+
+.sidebar {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  border: 2px solid red;
+}
+
+.main-area {
+  grid-column-start: 2;
+  grid-column-end: 3;
+}
