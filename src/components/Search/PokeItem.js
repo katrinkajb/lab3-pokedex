@@ -16,12 +16,12 @@ export default class PokeItem extends Component {
         return (
             <li className='list-item'>
                 <p>
-                    <div className='pokeName'>{pokemonName}</div>
+                    <div className='pokeName, capitalize'>{pokemonName}</div>
                     <img src={image} alt='Pokemon' className='poke-img' />
                     <div>
-                        <div>Shape: {shape}  </div>
-                        <div>Ability: {ability}  </div>
-                        <div>Type: {type}  </div>
+                        <div className='capitalize'>Shape: {shape}  </div>
+                        <div className='capitalize'>Ability: {ability}  </div>
+                        <div className='capitalize'>Type: {type}  </div>
                         <div>Attack: {attack}  </div>
                         <div>Defense: {defense}  </div>
                     </div>

@@ -38,11 +38,17 @@ Header {
 .list-item {
   list-style-type: none;
   color: black;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
+  display: inline-flex;
+  cursor: pointer;
+  margin: 10px;
+  padding: 10px;
+  border: 2px solid black;
 }
 
 .pokeName {
   font-weight: 500;
+}
+
+.capitalize {
+  text-transform: capitalize;
 }
