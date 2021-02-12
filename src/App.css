@@ -26,6 +26,6 @@ Header {
   font-size: larger;
 }
 
-.link {
-  
+.selected {
+  display: none;
 }
