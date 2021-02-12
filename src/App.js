@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import './App.css';
-import Header from './components/Header.js'
+import Header from './components/Header.js';
 import HomePage from './components/HomePage.js';
-import SearchPage from './components/SearchPage.js';
+import SearchPage from './components/Search/SearchPage.js';
 import {BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 export default class App extends Component {
