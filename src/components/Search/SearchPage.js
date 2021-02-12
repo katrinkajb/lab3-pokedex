@@ -1,33 +1,42 @@
 import React, { Component } from 'react';
 import '../../App.css';
 import PokeList from './PokeList.js';
-import pokeData from '../../data.js';
-import SortOrder from './SortOrder.js;'
+import SortOrder from './SortOrder.js';
+import SearchBar from './SearchBar.js';
 
 export default class SearchPage extends Component {
     state = {
-        pokeData: pokeData,
-        pokemonName: '',
+        pokemon: [],
         sortOrder: '',
         sortBy: 'pokemonName',
         searchQuery: '',
     }
 
-    // handleChange = (e) => {
-    //     this.setState({
-    //       sortBy: e.target.value
-    //     })
-    //   }
+    handleChange = (e) => {
+        this.setState({
+          sortBy: e.target.value
+        })
+    }
+
+    handleSearchQueryChange = (e) => {
+        e.preventDefault()
+        this.setState({
+            searchQuery: e.target.value
+        })
+    }
 
     render() {
-
         // const for filtered list
+        // const filteredPokemon = pokemonName.filter((pokemonName) => {
+        //     if(!this.state.pokemonName) return true;
+        //     return false
+        // });
+
         return (
             <div className='search-page'>
                 <div className='sidebar'>
                     <div className='search-div'>
-                        Search:
-                        {/* <SearchBar /> */}
+                        <SearchBar />
                     </div>
                     <div className='sort-div'>
                         Sort by:

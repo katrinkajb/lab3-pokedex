@@ -69,3 +69,11 @@ Header {
   grid-column-start: 2;
   grid-column-end: 3;
 }
+
+.search-bar {
+  margin: 10px;
+}
+
+.sort-dropdown {
+  margin-top: 10px;
+}
