@@ -15,7 +15,7 @@ export default class PokeItem extends Component {
 
         return (
             <li className='list-item'>
-                <p>
+                <div>
                     <div className='pokeName, capitalize'>{pokemonName}</div>
                     <img src={image} alt='Pokemon' className='poke-img' />
                     <div>
@@ -25,7 +25,7 @@ export default class PokeItem extends Component {
                         <div>Attack: {attack}  </div>
                         <div>Defense: {defense}  </div>
                     </div>
-                </p>
+                </div>
             </li>
         )
     }

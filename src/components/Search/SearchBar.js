@@ -2,6 +2,13 @@ import React, { Component } from 'react'
 
 export default class SearchBar extends Component {
     
+    handleSearchQueryChange = (e) => {
+        e.preventDefault()
+        this.setState({
+            searchQuery: e.target.value
+        })
+    }
+
     render() {
         return (
             <div className='search-bar'>
