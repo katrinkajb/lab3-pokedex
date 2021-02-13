@@ -1,19 +1,14 @@
 import React, { Component } from 'react'
 
 export default class SearchBar extends Component {
-    
-    handleSearchQueryChange = (e) => {
-        e.preventDefault()
-        this.setState({
-            searchQuery: e.target.value
-        })
+    state = {
+        searchQuery: '',  
     }
-
     render() {
         return (
             <div className='search-bar'>
-                <input  placeholder='Search by Name'/>
-                <button onClick={this.props.handleSearchQueryChange}>Search</button>
+                <input onChange={(e)=> this.setState({searchQuery: e.target.value})} value={this.state.currentValue} placeholder='Search by Name'/>
+                <button onClick={() => this.props.handleSearchQueryChange (this.state.searchQuery)}>Search</button>
             </div>
         )
     }

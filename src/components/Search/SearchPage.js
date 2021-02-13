@@ -8,9 +8,15 @@ import pokeData from '../../data.js';
 export default class SearchPage extends Component {
     state = {
         pokemon: [],
-        // order: 'ascending',
         sortBy: 'pokemon',
+        order: 'ascending',
         searchQuery: '',
+    }
+
+    handleSearchQueryChange = (e) => {
+        this.setState({
+            searchQuery: e
+        })
     }
 
     handleSortChange = (e) => {
@@ -19,35 +25,39 @@ export default class SearchPage extends Component {
         })
     }
 // change handler for order
-// handleOrderChange
+    handleOrderChange = (e) => {
+        this.setState({
+        order: e.target.value
+        })
+    }
 
     render() {
-        // const for filtered list
+        const filteredList = pokeData.filter(pokemon => pokemon.pokemon.includes(this.state.searchQuery))
 
-        pokeData.sort(
-            (a, b) => a[this.state.sortBy].localeCompare(b[this.state.sortBy])
-            );
+        if (this.state.order === 'ascending')
+            this.state.pokemon.sort((a, b) => a[this.state.sortBy].localeCompare(b[this.state.sortBy]))
+        if (this.state.order === 'descending')
+            this.state.pokemon.sort((a, b) => b[this.state.sortBy].localeCompare(a[this.state.sortBy]))
 
+       
         return (
             <div className='search-page'>
                 <div className='sidebar'>
                     <div className='search-div'>
-                        <SearchBar />
+                        <SearchBar currentValue={this.state.searchQuery}
+                            handleSearchQueryChange={this.handleSearchQueryChange}
+                        />
                     </div>
                     <div className='sort-div'>
                         Sort by:
                         <SortOrder 
-                            handleChange={this.handleChange}
-                            // pokemonName={pokeObject.pokemon}
-                            // shape={pokeObject.shape}
-                            // ability={pokeObject.ability_1} 
-                            // type={pokeObject.type_1}                        
+                            handleSortChange={this.handleSortChange}
                         />
                     </div>
                 </div>
                 <div className='main-area'>
                     <PokeList 
-                        pokeData={pokeData}
+                        pokeData={filteredList}
                     />
                 </div>
             </div>

@@ -8,7 +8,7 @@
 }
 
 Header {
-  background-color: #5688ec;
+  background-color: grey;
   min-height: 5vh;
   display: flex;
   flex-direction: column;
@@ -62,7 +62,8 @@ Header {
 .sidebar {
   grid-column-start: 1;
   grid-column-end: 2;
-  border: 2px solid red;
+  background-color:rgb(167, 1, 1);
+  color: white;
 }
 
 .main-area {

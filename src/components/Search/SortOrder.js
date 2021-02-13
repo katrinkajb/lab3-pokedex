@@ -12,11 +12,11 @@ export default class SortOrder extends Component {
                     <option value='ability_1'>ability</option>
                     <option value='type_1'>type</option>
                 </select>
-                {/* <select
-                    onChange={this.props.handleChange}>
+                <select
+                    onChange={this.props.handleOrderChange}>
                     <option value='ascending'>ascending</option>
                     <option value='descending'>descending</option>
-                </select> */}
+                </select>
             </>
         )
     }
