@@ -7,7 +7,7 @@ export default class SearchBar extends Component {
     render() {
         return (
             <div className='search-bar'>
-                <input onChange={(e)=> this.setState({searchQuery: e.target.value})} value={this.state.currentValue} placeholder='Search by Name'/>
+                <input onChange={(e)=> this.setState({searchQuery: e.target.value})} placeholder='Search by Name'/>
                 <button onClick={() => this.props.handleSearchQueryChange (this.state.searchQuery)}>Search</button>
             </div>
         )
