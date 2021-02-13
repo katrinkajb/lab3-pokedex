@@ -1,20 +1,12 @@
 import React, { Component } from 'react';
 import PokeItem from './PokeItem';
-import pokeData from '../../data.js';
 
 export default class PokeList extends Component {
-    state = {
-        pokeData: pokeData,
-        pokemonName: '',
-        sortOrder: '',
-        sortBy: 'pokemonName',
-        searchQuery: '',
-    }
 
     render() {
         return (
             <ul className='list'>
-                {this.state.pokeData.map(pokeObject =>
+                {this.props.pokeData.map(pokeObject =>
                     <PokeItem
                         key={pokeObject._id}
                         pokemonName={pokeObject.pokemon}

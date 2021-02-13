@@ -1,50 +1,67 @@
 import React, { Component } from 'react';
 import '../../App.css';
 import PokeList from './PokeList.js';
-import SortOrder from './SortOrder.js';
 import SearchBar from './SearchBar.js';
+import pokeData from '../../data.js';
+import SortOrder from './SortOrder';
 
 export default class SearchPage extends Component {
     state = {
-        pokemon: [],
-        sortOrder: '',
-        sortBy: 'pokemonName',
+        pokemon: pokeData,
+        sortBy: 'pokemon',
+        order: 'ascending',
         searchQuery: '',
     }
 
-    handleChange = (e) => {
+    handleSearchQueryChange = (e) => {
+        this.setState({
+            searchQuery: e
+        })
+    }
+
+    handleSortChange = (e) => {
         this.setState({
           sortBy: e.target.value
         })
     }
-
-    handleSearchQueryChange = (e) => {
-        e.preventDefault()
+// change handler for order
+    handleOrderChange = (e) => {
         this.setState({
-            searchQuery: e.target.value
+        order: e.target.value
         })
     }
 
     render() {
-        // const for filtered list
-        // const filteredPokemon = pokemonName.filter((pokemonName) => {
-        //     if(!this.state.pokemonName) return true;
-        //     return false
-        // });
+        const filteredList = pokeData.filter(poke => poke.pokemon.includes(this.state.searchQuery))
+        if (this.state.sortBy !== '') {
+            if (this.state.order === 'ascending') {
+            this.state.pokemon.sort((a, b) => a[this.state.sortBy].localeCompare(b[this.state.sortBy])) 
+            } else {
+            this.state.pokemon.sort((a, b) => b[this.state.sortBy].localeCompare(a[this.state.sortBy]))
+            };
+        }
 
+               
         return (
             <div className='search-page'>
                 <div className='sidebar'>
                     <div className='search-div'>
-                        <SearchBar />
+                        <SearchBar 
+                            handleSearchQueryChange={this.handleSearchQueryChange}
+                        />
                     </div>
                     <div className='sort-div'>
                         Sort by:
-                        <SortOrder />
+                        <SortOrder 
+                            handleSortChange={this.handleSortChange}
+                            handleOrderChange={this.handleOrderChange}
+                        />
                     </div>
                 </div>
                 <div className='main-area'>
-                    <PokeList />
+                    <PokeList 
+                        pokeData={filteredList}
+                    />
                 </div>
             </div>
         )
