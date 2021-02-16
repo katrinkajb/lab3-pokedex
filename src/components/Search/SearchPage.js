@@ -1,35 +1,57 @@
 import React, { Component } from 'react';
 import '../../App.css';
 import PokeList from './PokeList.js';
-import SearchBar from './SearchBar.js';
-import pokeData from '../../data.js';
+// import SearchBar from './SearchBar.js';
+// import pokeData from '../../data.js';
 import SortOrder from './SortOrder';
+import request from 'superagent';
+
 
 export default class SearchPage extends Component {
     state = {
-        pokemon: pokeData,
+        pokemon: [],
         sortBy: 'pokemon',
         order: 'ascending',
         searchQuery: '',
     }
 
+// componentDidMount
+
     handleSearchQueryChange = (e) => {
         this.setState({
-            searchQuery: e
+            searchQuery: e.target.value
         })
     }
+
+    handleClick = () => {
+        this.setState({
+            pokemon: [
+                {
+                    pokemon:'bulbasaur',
+                    type_1:'grass',
+                    url_image:'http://assets.pokemon.com/assets/cms2/img/pokedex/full/001.png',
+                },
+                {
+                    pokemon:'ivysaur',
+                    type_1:'grass',
+                    url_image:'http://assets.pokemon.com/assets/cms2/img/pokedex/full/002.png',
+                },
+            ]
+          })
+          console.log(this.state.pokemon);
+      }
 
     handleSortChange = (e) => {
         this.setState({
           sortBy: e.target.value
         })
     }
-// change handler for order
+
     handleOrderChange = (e) => {
         this.setState({
         order: e.target.value
         })
-    }
+    };
 
     render() {
         if (this.state.order === 'ascending') {
@@ -38,15 +60,14 @@ export default class SearchPage extends Component {
         this.state.pokemon.sort((a, b) => b[this.state.sortBy].localeCompare(a[this.state.sortBy]))
         };
 
-        const filteredList = pokeData.filter(poke => poke.pokemon.includes(this.state.searchQuery))
+        // const filteredList = pokeData.filter(poke => poke.pokemon.includes(this.state.searchQuery))
                
         return (
             <div className='search-page'>
                 <div className='sidebar'>
-                    <div className='search-div'>
-                        <SearchBar 
-                            handleSearchQueryChange={this.handleSearchQueryChange}
-                        />
+                    <div className='search-bar'>
+                        {/* <input onChange={(e)=> this.handleSearchQueryChange} placeholder='Search by Name'/> */}
+                        <button onClick={this.handleClick}>Search</button>
                     </div>
                     <div className='sort-div'>
                         Sort by:
@@ -58,7 +79,7 @@ export default class SearchPage extends Component {
                 </div>
                 <div className='main-area'>
                     <PokeList 
-                        pokeData={filteredList}
+                        pokeData={this.state.pokemon}
                     />
                 </div>
             </div>
