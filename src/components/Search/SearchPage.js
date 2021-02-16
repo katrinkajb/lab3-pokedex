@@ -15,20 +15,28 @@ export default class SearchPage extends Component {
         searchQuery: '',
     }
 
-// componentDidMount
-
-    handleSearchQueryChange = (e) => {
-        this.setState({
-            searchQuery: e.target.value
-        })
-    }
-
-    handleClick = async () => {
+    componentDidMount = async () => {
         const data = await request.get('https://pokedex-alchemy.herokuapp.com/api/pokedex?sort=defence&direction=desc');
         
         this.setState({     
             pokemon: data.body.results,
           })
+      }
+
+    handleSearchQueryChange = (e) => {
+        console.log('query change', e.target.value);
+        this.setState({
+            searchQuery: e.target.value,
+        })
+    }
+
+    handleClick = async () => {
+        const data = await request.get(`https://pokedex-alchemy.herokuapp.com/api/pokedex?pokemon=${this.state.searchQuery}`);
+        
+        this.setState({     
+            pokemon: data.body.results,
+          })
+        console.log('button click', this.state.pokemon);
       }
 
     handleSortChange = (e) => {
@@ -56,7 +64,7 @@ export default class SearchPage extends Component {
             <div className='search-page'>
                 <div className='sidebar'>
                     <div className='search-bar'>
-                        {/* <input onChange={(e)=> this.handleSearchQueryChange} placeholder='Search by Name'/> */}
+                        <input onChange={this.handleSearchQueryChange} placeholder='Search by Name'/>
                         <button onClick={this.handleClick}>Search</button>
                     </div>
                     <div className='sort-div'>
