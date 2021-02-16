@@ -23,22 +23,12 @@ export default class SearchPage extends Component {
         })
     }
 
-    handleClick = () => {
-        this.setState({
-            pokemon: [
-                {
-                    pokemon:'bulbasaur',
-                    type_1:'grass',
-                    url_image:'http://assets.pokemon.com/assets/cms2/img/pokedex/full/001.png',
-                },
-                {
-                    pokemon:'ivysaur',
-                    type_1:'grass',
-                    url_image:'http://assets.pokemon.com/assets/cms2/img/pokedex/full/002.png',
-                },
-            ]
+    handleClick = async () => {
+        const data = await request.get('https://pokedex-alchemy.herokuapp.com/api/pokedex?sort=defence&direction=desc');
+        
+        this.setState({     
+            pokemon: data.body.results,
           })
-          console.log(this.state.pokemon);
       }
 
     handleSortChange = (e) => {
