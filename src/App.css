@@ -81,3 +81,15 @@ Header {
 .sort-dropdown {
   margin-top: 10px;
 }
+
+.drake {
+  margin-top: 30px;
+  border-radius: 25px;
+  width: 200;
+  height: 200; 
+}
+
+.loading-gif {
+  margin-top: 30px;
+  border-radius: 95px;
+}
