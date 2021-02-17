@@ -15,7 +15,6 @@ Header {
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  
 }
 
 .App-link {
@@ -92,4 +91,8 @@ Header {
 .loading-gif {
   margin-top: 30px;
   border-radius: 95px;
+}
+
+.welcome {
+  font-weight: 500;
 }
