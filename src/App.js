@@ -3,6 +3,7 @@ import './App.css';
 import Header from './components/Header.js';
 import HomePage from './components/HomePage.js';
 import SearchPage from './components/Search/SearchPage.js';
+import PokemonDetail from './PokemonDetail.js';
 import {BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 export default class App extends Component {
@@ -21,6 +22,11 @@ export default class App extends Component {
             path="/search" 
             exact
             render={(routerProps) => <SearchPage {...routerProps} />} 
+          />
+          <Route 
+            path="/PokemonDetail" 
+            exact
+            render={(routerProps) => <PokemonDetail {...routerProps} />} 
           />
           </Switch>
         </Router>
