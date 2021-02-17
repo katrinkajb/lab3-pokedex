@@ -76,7 +76,6 @@ export default class SearchPage extends Component {
                         />
                     </div>
                     <img className='drake' width='220' height='220' alt='Drake with pokeballs' src='https://media.giphy.com/media/vsyKKf1t22nmw/giphy.gif' />
-
                 </div>
                 <div className='main-area'>
                     { this.state.loading 

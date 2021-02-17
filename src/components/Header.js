@@ -11,8 +11,8 @@ export default withRouter(class Header extends Component {
                     Home
                 </NavLink>
                 {
-                    this.props.location.pathname !== '/search'
-                    && <NavLink exact activeClassName="selected" to="/search">
+                    this.props.location.pathname !== '/pokemon'
+                    && <NavLink exact activeClassName="selected" to="/pokemon">
                         Search
                 </NavLink>
                 }
