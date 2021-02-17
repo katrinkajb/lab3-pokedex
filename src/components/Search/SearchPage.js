@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../../App.css';
 import PokeList from './PokeList.js';
-// import SearchBar from './SearchBar.js';
+import SearchBar from './SearchBar.js';
 // import pokeData from '../../data.js';
 import SortOrder from './SortOrder';
 import request from 'superagent';
@@ -11,61 +11,57 @@ export default class SearchPage extends Component {
     state = {
         pokemon: [],
         sortBy: 'pokemon',
-        order: 'ascending',
+        order: 'asc',
         searchQuery: '',
     }
 
     componentDidMount = async () => {
-        const data = await request.get('https://pokedex-alchemy.herokuapp.com/api/pokedex?sort=defence&direction=desc');
+        await this.fetchPokemon();
+      }
+
+    fetchPokemon = async () => {
+        const data = await request.get(`https://pokedex-alchemy.herokuapp.com/api/pokedex?pokemon=${this.state.searchQuery}&sort=${this.state.sortBy}&direction=${this.state.order}`);
         
         this.setState({     
             pokemon: data.body.results,
           })
-      }
+    }
 
     handleSearchQueryChange = (e) => {
-        console.log('query change', e.target.value);
         this.setState({
             searchQuery: e.target.value,
         })
     }
 
     handleClick = async () => {
-        const data = await request.get(`https://pokedex-alchemy.herokuapp.com/api/pokedex?pokemon=${this.state.searchQuery}`);
-        
-        this.setState({     
-            pokemon: data.body.results,
-          })
-        console.log('button click', this.state.pokemon);
+        await this.fetchPokemon();
       }
 
-    handleSortChange = (e) => {
-        this.setState({
-          sortBy: e.target.value
+    handleSortChange = async (e) => { 
+        await this.setState({
+          sortBy: e.target.value,
         })
+
+        await this.fetchPokemon();
     }
 
-    handleOrderChange = (e) => {
-        this.setState({
-        order: e.target.value
+    handleOrderChange = async (e) => {       
+        await this.setState({
+          order: e.target.value,
         })
+
+        await this.fetchPokemon();
     };
 
-    render() {
-        if (this.state.order === 'ascending') {
-        this.state.pokemon.sort((a, b) => a[this.state.sortBy].localeCompare(b[this.state.sortBy])) 
-        } else {
-        this.state.pokemon.sort((a, b) => b[this.state.sortBy].localeCompare(a[this.state.sortBy]))
-        };
-
-        // const filteredList = pokeData.filter(poke => poke.pokemon.includes(this.state.searchQuery))
-               
+    render() {               
         return (
             <div className='search-page'>
                 <div className='sidebar'>
                     <div className='search-bar'>
-                        <input onChange={this.handleSearchQueryChange} placeholder='Search by Name'/>
-                        <button onClick={this.handleClick}>Search</button>
+                        <SearchBar 
+                        handleSearchQueryChange={this.handleSearchQueryChange}
+                        handleClick={this.handleClick}
+                        />                       
                     </div>
                     <div className='sort-div'>
                         Sort by:
