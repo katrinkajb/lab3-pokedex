@@ -6,6 +6,7 @@ export default withRouter(class Header extends Component {
     render() {
         return (
             <header>
+                <p className='welcome'>Welcome to KB's Pokedex!</p>
                 <NavLink exact activeClassName="selected" to="/">
                     Home
                 </NavLink>
