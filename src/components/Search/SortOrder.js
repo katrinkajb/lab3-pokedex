@@ -6,10 +6,12 @@ export default class SortOrder extends Component {
         return (
             <>
                 <select onChange={this.props.handleSortChange} className='sort-dropdown'>
-                    <option value='pokemon'>name</option>
-                    <option value='shape'>shape</option>
-                    <option value='ability_1'>ability</option>
-                    <option value='type_1'>type</option>
+                    <option value='pokemon'>Name</option>
+                    <option value='shape'>Shape</option>
+                    <option value='ability_1'>Ability</option>
+                    <option value='type_1'>Type</option>
+                    <option value='attack'>Attack</option>
+                    <option value='defense'>Defense</option>
                 </select>
                 <select onChange={this.props.handleOrderChange}>
                     <option value='asc'>ascending</option>

@@ -79,10 +79,12 @@ export default class SearchPage extends Component {
 
                 </div>
                 <div className='main-area'>
-                    { this.state.loading && <LoadingSpinner /> }
-                    <PokeList 
-                        pokeData={this.state.pokemon}
-                    />
+                    { this.state.loading 
+                        ? <LoadingSpinner /> 
+                        : <PokeList 
+                            pokeData={this.state.pokemon}
+                        />
+                    }
                 </div>
             </div>
         )
