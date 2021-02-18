@@ -57,7 +57,6 @@ Header {
 .search-page {
   display: grid;
   grid-template-columns: 1fr 3fr;
-
 }
 
 .sidebar {
@@ -65,6 +64,7 @@ Header {
   grid-column-end: 2;
   background-color:rgb(167, 1, 1);
   color: white;
+  justify-content: center;
 }
 
 .main-area {
@@ -83,6 +83,7 @@ Header {
 
 .drake {
   margin-top: 30px;
+  margin-bottom: 20px;
   border-radius: 25px;
   width: 200;
   height: 200; 
@@ -97,6 +98,13 @@ Header {
   font-weight: 500;
 }
 
-/* .detail-page {
+.detail-page {
+  background-color:rgb(167, 1, 1);
+  height: 100%;
+}
 
-} */
+.home-page {
+  background-color:rgb(167, 1, 1);
+  height: 100%;
+  color: white;
+}

@@ -12,8 +12,8 @@ export default class PokeItemDetail extends Component {
             ability_1, 
             ability_2,
             type_1,
-            special_attack,
-            special_defense,
+            type_2,
+            hp,
             speed,
         } = this.props.pokeProp
 
@@ -26,12 +26,12 @@ export default class PokeItemDetail extends Component {
                         <div className='capitalize'>Shape: {shape} </div>
                         <div className='capitalize'>Ability: {ability_1} </div>
                         <div className='capitalize'>Second Ability: {ability_2} </div>
-                        <div className='capitalize'>Type: {type_1}  </div>
-                        <div>Attack: {attack}  </div>
-                        <div>Defense: {defense}  </div>
-                        <div className='capitalize'>Special Attach: {special_attack} </div>
-                        <div className='capitalize'>Special Defense: {special_defense} </div>
-                        <div className='capitalize'>Speed: {speed} </div>
+                        <div className='capitalize'>Type: {type_1} </div>
+                        <div className='capitalize'>Second Type: {type_2} </div>
+                        <div>Attack: {attack} </div>
+                        <div>Defense: {defense} </div>
+                        <div>Hit Points: {hp} </div>
+                        <div>Speed: {speed} </div>
                     </div>
                 </div>
             </li>

@@ -13,6 +13,9 @@ export default class SearchPage extends Component {
         order: 'asc',
         searchQuery: '',
         loading: false,
+        currentPage: 1,
+        perPage: 20,
+        totalPokemon: 0,
     }
 
     componentDidMount = async () => {
@@ -24,21 +27,26 @@ export default class SearchPage extends Component {
             loading: true
         })
         
-        const data = await request.get(`https://pokedex-alchemy.herokuapp.com/api/pokedex?pokemon=${this.state.searchQuery}&sort=${this.state.sortBy}&direction=${this.state.order}`);
+        const data = await request.get(`https://pokedex-alchemy.herokuapp.com/api/pokedex?page=${this.state.currentPage}&perPage=${this.state.perPage}&pokemon=${this.state.searchQuery}&sort=${this.state.sortBy}&direction=${this.state.order}`);
         
         this.setState({     
             pokemon: data.body.results,
             loading: false,
-          })
+            totalPokemon: data.body.count,
+        })
     }
-
+    
     handleSearchQueryChange = (e) => {
         this.setState({
             searchQuery: e.target.value,
         })
     }
-
+    
     handleClick = async () => {
+        await this.setState({
+            currentPage: 1,
+        })
+        
         await this.fetchPokemon();
       }
 
@@ -58,7 +66,32 @@ export default class SearchPage extends Component {
         await this.fetchPokemon();
     };
 
-    render() {               
+    handlePrevButtonClick = async () => {       
+        await this.setState({
+          currentPage: this.state.currentPage - 1
+        });
+
+        await this.fetchPokemon();
+    };
+
+    handleNextButtonClick = async () => {       
+        await this.setState({
+          currentPage: this.state.currentPage + 1
+        });
+
+        await this.fetchPokemon();
+    };
+
+    handlePerPageChange = async (e) => {
+        await this.setState({
+            perPage: e.target.value
+        })
+
+        await this.fetchPokemon();
+    }
+
+    render() {     
+        const lastPage = Math.ceil(this.state.totalPokemon / this.state.perPage);          
         return (
             <div className='search-page'>
                 <div className='sidebar'>
@@ -67,6 +100,17 @@ export default class SearchPage extends Component {
                         handleSearchQueryChange={this.handleSearchQueryChange}
                         handleClick={this.handleClick}
                         />                       
+                        <button className='prev-button' onClick={this.handlePrevButtonClick} disabled={this.state.currentPage === 1}>Prev Page</button>
+                        <button className='next-button' onClick={this.handleNextButtonClick} disabled={this.state.currentPage === lastPage}>Next Page</button>
+                        <div>Page: {this.state.currentPage}</div>
+                        <label className='perPage-dropdown'> Pokemon per page
+                            <select onChange={this.handlePerPageChange} >
+                                <option value={20}>20</option>
+                                <option value={50}>50</option>
+                                <option value={75}>75</option>
+                                <option value={100}>100</option>
+                            </select>
+                        </label>
                     </div>
                     <div className='sort-div'>
                         Sort by:
