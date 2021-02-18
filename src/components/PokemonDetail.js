@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import request from 'superagent';
 import LoadingSpinner from './Search/LoadingSpinner.js';
-import PokeItemDetail from './Search/PokeItemDetail.js';
+import PokeItemDetail from './PokeItemDetail.js';
+import '../App.css';
 
 export default class PokemonDetail extends Component {
     state = {
@@ -14,10 +15,10 @@ export default class PokemonDetail extends Component {
             loading: true
         })
         
-        const data = await request.get(`https://pokedex-alchemy.herokuapp.com/api/pokedex/${this.props.match.params.pokemonId}`);
+        const data = await request.get(`https://pokedex-alchemy.herokuapp.com/api/pokedex/${this.props.match.params._id}`);
         
         this.setState({     
-            pokemonData: data.body.results.find(item => item.pokemon === this.props.match.params.pokemonId),
+            pokemonData: data.body,
             loading: false,
           })
       }
@@ -28,7 +29,7 @@ export default class PokemonDetail extends Component {
                 { this.state.loading 
                     ? <LoadingSpinner /> 
                     : <PokeItemDetail 
-                        pokeProp={this.props.pokemonData.pokemonId} />
+                        pokeProp={this.state.pokemonData} />
                 }    
             </div>
         )

@@ -8,11 +8,10 @@ export default class PokeList extends Component {
             <ul className='list'>
                 {this.props.pokeData.map(pokeObject =>
                     <PokeItem
-                        key={pokeObject.pokemonId}
+                        key={pokeObject._id}
+                        _id={pokeObject._id}
                         pokemonName={pokeObject.pokemon}
                         image={pokeObject.url_image}
-                        attack={pokeObject.attack}
-                        defense={pokeObject.defense}
                         shape={pokeObject.shape}
                         ability={pokeObject.ability_1} 
                         type={pokeObject.type_1}
